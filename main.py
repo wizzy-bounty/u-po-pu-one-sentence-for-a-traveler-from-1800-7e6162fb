@@ -11,6 +11,8 @@ Standard library only. Deterministic: the same bytes on every run.
 
 import os
 
+MAX_CHARS = 200
+
 SENTENCE = (
     "Every library, post office, and market in the world is joined by one "
     "road, and whatever you send down it \u2014 a letter, a book, a song "
@@ -19,6 +21,7 @@ SENTENCE = (
 
 
 def main() -> None:
+    assert len(SENTENCE) <= MAX_CHARS
     out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
     os.makedirs(out_dir, exist_ok=True)
     path = os.path.join(out_dir, "entry.txt")
